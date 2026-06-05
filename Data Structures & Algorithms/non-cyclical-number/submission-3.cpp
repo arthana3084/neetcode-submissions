@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        int sum=0;
+        while(n>0)
+        {
+            int digit=n%10;
+            sum+=digit*digit;
+            n=n/10;
+        }
+        unordered_set<int> seen;
+        while(!seen.count(sum))
+        {
+            seen.insert(sum);
+            if(sum==1)
+            {
+                return true;
+            }
+            int num=sum;
+            sum=0;
+            while(num>0)
+            {
+                int digit=num%10;
+                sum+=digit*digit;
+                num=num/10;
+            }
+        }
+        if(seen.count(sum))
+        {
+            return false;
+        }
+    }
+};
